@@ -2,7 +2,10 @@ name: buildDashboard
 
 on:
   schedule:
-    - cron:  "10,25,40,55 * * * *"
+    - cron:  "10,25,40,55 * * * *" # cnftstats
+    # - cron:  "5,20,35,50 * * * *"  # githubktwoo
+    # - cron:  "0,15,30,45 * * * *"  # Paykoman
+    # - cron:  "13,28,43,58 * * * *" # bosscatrock
   workflow_dispatch:
     
 jobs: 
@@ -55,3 +58,15 @@ jobs:
         remote_repository: https://github.com/cnftstats/cnftstats.github.io
         access_token: ${{ secrets.API_TOKEN_GITHUB }}
         force: true
+
+    # Push files (listings evolution data/DTE.rds)
+    - name: Commit files data
+      run: |
+        git config --local user.name actions-user
+        git config --local user.email "actions@github.com"
+        git add data/DTE_bcrc.rds
+        git commit -am "DTE updated $(date)"
+        git push origin
+      env:
+        REPO_KEY: ${{secrets.GITHUB_TOKEN}}
+        username: github-actions
