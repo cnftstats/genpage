@@ -3,9 +3,6 @@ name: buildDashboard
 on:
   schedule:
     - cron:  "10,25,40,55 * * * *" # cnftstats
-    # - cron:  "5,20,35,50 * * * *"  # githubktwoo
-    # - cron:  "0,15,30,45 * * * *"  # Paykoman
-    # - cron:  "13,28,43,58 * * * *" # bosscatrock
   workflow_dispatch:
     
 jobs: 
